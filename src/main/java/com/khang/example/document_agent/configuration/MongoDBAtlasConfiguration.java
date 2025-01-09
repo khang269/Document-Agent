@@ -7,14 +7,17 @@ import com.mongodb.client.MongoClients;
 import dev.langchain4j.store.embedding.mongodb.IndexMapping;
 import dev.langchain4j.store.embedding.mongodb.MongoDbEmbeddingStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MongoDBAtlasConfiguration {
 
+    @Value("${mongodb.uri}")
     private String uri = "";
 
+    @Value("${mongodb.database}")
     private String databaseName = "";
 
     private String collectionName = "";
@@ -39,7 +42,6 @@ public class MongoDBAtlasConfiguration {
                         IndexMapping
                                 .builder()
                                 .dimension(2048)
-
                                 .build())
                 .createIndex(true)
                 .build();
