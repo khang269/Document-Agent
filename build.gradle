@@ -22,6 +22,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url = "https://maven.vaadin.com/vaadin-addons" }
 }
 
 ext {
@@ -32,6 +33,13 @@ dependencies {
 	implementation 'com.vaadin:vaadin'
 	implementation 'com.vaadin:vaadin-spring-boot-starter'
 	implementation 'org.parttio:line-awesome:2.1.0'
+
+	// https://mvnrepository.com/artifact/dev.langchain4j/langchain4j
+	implementation 'dev.langchain4j:langchain4j-core:1.0.0-alpha1'
+	implementation 'dev.langchain4j:langchain4j:1.0.0-alpha1'
+	implementation 'dev.langchain4j:langchain4j-mongodb-atlas:1.0.0-alpha1'
+	implementation 'dev.langchain4j:langchain4j-open-ai:1.0.0-alpha1'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -42,6 +50,10 @@ dependencyManagement {
 	imports {
 		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
 	}
+}
+
+vaadin {
+	optimizeBundle = false
 }
 
 tasks.named('test') {
